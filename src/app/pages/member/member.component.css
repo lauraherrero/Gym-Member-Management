@@ -1,0 +1,40 @@
+.person,
+.list-button,
+.gender {
+  margin-right: 15px;
+}
+
+.bottom-container {
+  margin-bottom: 20px;
+}
+.button-wrapper {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.button-add {
+  background-color: #62C741;
+  color: white;
+}
+.button-update {
+  background-color: #4051B5;
+  color: white;
+}
+.wrapper-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+.card {
+  padding: 20px 50px;
+}
+.card-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 30px 30px;
+}
+.icon {
+  font-size: 18px;
+}
+form {
+  height: 50vh;
+}

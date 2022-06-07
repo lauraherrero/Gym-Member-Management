@@ -1,0 +1,167 @@
+<form class="form" #formtemp="ngForm" (submit)="add(formtemp)">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile color="primary">
+      <div class="controles-container">
+        <div>
+          <mat-form-field>
+            <mat-label>
+              <mat-icon>font_download</mat-icon>
+              Nombre</mat-label
+            >
+            <input
+              required
+              matInput
+              id="name"
+              type="text"
+              minlength="3"
+              placeholder="Nombre"
+              [(ngModel)]="member.name"
+              name="name"
+              #name="ngModel"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label><mat-icon>spellcheck</mat-icon>
+              Apellidos</mat-label>
+            <input
+              required
+              matInput
+              type="text"
+              minlength="3"
+              placeholder="Apellidos"
+              name="surname"
+              [(ngModel)]="member.surname"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label><mat-icon>card_membership</mat-icon> 
+            Número de Socio</mat-label>
+            <input
+              required
+              matInput
+              type="number"
+              placeholder="10 números"
+              pattern="[0-9]{10}"
+              name="member"
+              [(ngModel)]="member.memberNumber"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <div>
+          <mat-form-field>
+            <mat-label><mat-icon>assignment_ind</mat-icon> 
+            DNI</mat-label>
+            <input
+              required
+              matInput
+              type="text"
+              placeholder="8 números + 1 letra"
+              pattern="[0-9]{8}[A-Za-z]{1}"
+              name="dni"
+              [(ngModel)]="member.dni"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label><mat-icon>call</mat-icon> 
+            Teléfono</mat-label>
+            <input
+              required
+              matInput
+              type="text"
+              placeholder="9 números"
+              pattern="[0-9]{9}"
+              name="phone"
+              [(ngModel)]="member.phone"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <div class="add-bottom-padding bottom-container">
+            <mat-form-field>
+              <mat-label> <mat-icon>wc</mat-icon>
+                Género</mat-label>
+              <mat-select
+                placeholder="Género"
+                required
+                name="gender"
+                [(ngModel)]="member.gender"
+              >
+                <ng-container *ngFor="let gender of genderList">
+                  <mat-option value="{{ gender.value }}">{{
+                    gender.value
+                  }}</mat-option>
+                </ng-container>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="button-wrapper">
+    <button
+      mat-raised-button
+      type="submit"
+      [disabled]="formtemp.invalid"
+      class="button-add"
+    >
+      <mat-icon>person_add</mat-icon>
+      Añadir
+    </button>
+  </div>
+</form>
+<mat-divider></mat-divider>
+<mat-card class="card">
+  <mat-card-title> Miembro Gimnasio</mat-card-title>
+  <mat-card-content class="card-content">
+    <p>Nombre: {{ member.name }}</p>
+    <p>Apellidos: {{ member.surname }}</p>
+    <p>Número de Socio: {{ member.memberNumber }}</p>
+    <p>DNI: {{ member.dni }}</p>
+    <p>Teléfono: {{ member.phone }}</p>
+    <p>Género: {{ member.gender }}</p>
+  </mat-card-content>
+</mat-card>
+<mat-divider></mat-divider>
+<mat-card class="card">
+  <mat-card-title>Lista de miembros</mat-card-title>
+  <mat-list>
+    <mat-list-item *ngFor="let mem of members; let i = index">
+      <h3 class="h3 person">{{ mem.name }} {{ mem.surname }}</h3>
+      <p class="person">{{ mem.memberNumber }}</p>
+      <p class="person">{{ mem.dni }}</p>
+      <p class="person">{{ mem.phone }}</p>
+      <p class="person">{{ mem.gender }}</p>
+      <div class="wrapper-btn">
+        <button
+        class="button list-button button-update"
+        mat-flat-button
+        (click)="update(i)"
+      >
+        <mat-icon class="icon">create</mat-icon>
+        Actualizar
+      </button>
+      <button
+        class="button list-button"
+        mat-flat-button
+        color="warn"
+        (click)="delete(i)"
+      >
+        <mat-icon class="icon">clear</mat-icon>
+        Borrar
+      </button>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
